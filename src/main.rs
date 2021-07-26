@@ -47,6 +47,8 @@ fn main() {
         .map(|c| c.to_string())
         .collect();
 
+    // TODO: まず、入力された文字列とコマンドの先頭部分が一致するコマンドを一覧できるようにする
+
     let mut i = 0;
     for line in commands.iter() {
         println!("{}", line);
