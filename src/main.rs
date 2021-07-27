@@ -1,4 +1,5 @@
 use std::{
+    collections::HashSet,
     fs::OpenOptions,
     io::{self, BufRead, BufReader},
     path::PathBuf,
@@ -47,6 +48,9 @@ fn main() {
         .map(|c| re.replace(c, ""))
         .map(|c| c.to_string())
         .collect();
+
+    // 重複排除（参考にしたサイト:https://qiita.com/yagince/items/73184237964e9dbb8b3d ）
+    let commands: HashSet<String> = commands.into_iter().collect();
 
     // 入力された文字列とコマンドの先頭部分が一致するコマンドを一覧できるようにする
     let commands: Vec<String> = commands
