@@ -8,7 +8,7 @@ Rust 製の history 検索する CLI ツール
 
 ![Screenshot](./assets/screenshot.png)
 
-## run
+## Run
 
 ```
 $ cargo run
