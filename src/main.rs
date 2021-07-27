@@ -15,6 +15,8 @@ fn main() {
         .read_line(&mut word)
         .expect("Failed to read word");
 
+    let word = word.trim();
+
     println!("{}", word);
 
     let file_path = find_history_file().expect("can't find history file.");
@@ -47,8 +49,22 @@ fn main() {
         .map(|c| c.to_string())
         .collect();
 
-    // TODO: まず、入力された文字列とコマンドの先頭部分が一致するコマンドを一覧できるようにする
+    // 入力された文字列とコマンドの先頭部分が一致するコマンドを一覧できるようにする
+    let commands: Vec<String> = commands.iter().filter(|c| {
+        let word_count = word.chars().count();
+        let c_count = c.chars().count();
 
+        if word_count > c_count {
+            return false
+        }
+
+        let sliced = &c[..word_count];
+        sliced.to_string() == word
+    })
+    .map(|c| c.to_string())
+    .collect();
+
+    // 該当したコマンドを100件まで表示する
     let mut i = 0;
     for line in commands.iter() {
         println!("{}", line);
@@ -60,8 +76,10 @@ fn main() {
 }
 
 fn find_history_file() -> Option<PathBuf> {
+    // let history_file_path = ".zhistory";
+    let history_file_path = ".zsh_history";
     home::home_dir().map(|mut path| {
-        path.push(".zhistory");
+        path.push(history_file_path);
         path
     })
 }
