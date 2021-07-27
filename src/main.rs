@@ -65,6 +65,8 @@ fn main() {
         .map(|c| c.to_string())
         .collect();
 
+    println!("----------");
+
     // 該当したコマンドを100件まで表示する
     let mut i = 0;
     for line in commands.iter() {
