@@ -28,6 +28,9 @@ pub fn simplify(reader: BufReader<File>) -> Vec<String> {
         .map(|c| c.to_string())
         .collect();
 
+    // 末尾のスペースなどを排除
+    let commands: Vec<String> = commands.iter().map(|c| c.trim().to_string()).collect();
+
     // 重複排除（参考にしたサイト:https://qiita.com/yagince/items/73184237964e9dbb8b3d ）
     let commands: HashSet<String> = commands.into_iter().collect();
 
