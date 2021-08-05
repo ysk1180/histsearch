@@ -8,3 +8,4 @@ edition = "2018"
 [dependencies]
 home = "0.5" # for find home dir
 regex = "1"
+structopt = "0.3" # for parse command line argument
